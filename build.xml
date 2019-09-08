@@ -1,13 +1,17 @@
 <?xml version = "1.0"?>
-<project name= "Sample ANT Project" default="info" basedir="/home/rrkelley/ant_sample">
+<project name= "Using Regular Expressions" default="usage" basedir=".">
 	
-	<target name="info">
+	<target name="usage">
 
-		<echo>This ant script builds a simple Java project.</echo>
+		<echo>Usage: This ant script prints this message.</echo>
+		<echo>Clean: This ant script cleans all of the build files.</echo>
+		<echo>Build: This ant script build the class files.</echo>
+		<echo>Run: This ant script runs the compiled java files.</echo>
 
 	</target>
 	
-	<target name="run">
+	<target name="clean">
+
 		<echo>Generating the .java files</echo>
 		
 		<java classname="AntSample">	
@@ -18,10 +22,16 @@
 	</target>
 
 	<target name="build">
+
 		<echo>Compiling the .java source files</echo>
 		<javac includeantruntime="false" srcdir="." destdir="." />
+
 	</target>
 
-	
+	<target name="run">
+
+		<echo>Running the compied java files.</echo>
+
+	</target>
 
 </project>
