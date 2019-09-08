@@ -1,0 +1,27 @@
+<?xml version = "1.0"?>
+<project name= "Sample ANT Project" default="info" basedir="/home/rrkelley/ant_sample">
+	
+	<target name="info">
+
+		<echo>This ant script builds a simple Java project.</echo>
+
+	</target>
+	
+	<target name="run">
+		<echo>Generating the .java files</echo>
+		
+		<java classname="AntSample">	
+			<arg value="10" />
+			<arg value="Hello ANT Script" />
+		</java>
+
+	</target>
+
+	<target name="build">
+		<echo>Compiling the .java source files</echo>
+		<javac includeantruntime="false" srcdir="." destdir="." />
+	</target>
+
+	
+
+</project>
