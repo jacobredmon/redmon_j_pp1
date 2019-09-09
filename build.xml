@@ -5,26 +5,23 @@
 
 		<echo>Usage: This ant script prints this message.</echo>
 		<echo>Clean: This ant script cleans all of the build files.</echo>
-		<echo>Build: This ant script build the class files.</echo>
+		<echo>Build: This ant script builds the class files.</echo>
 		<echo>Run: This ant script runs the compiled java files.</echo>
 
 	</target>
 	
 	<target name="clean">
 
-		<echo>Generating the .java files</echo>
-		
-		<java classname="AntSample">	
-			<arg value="10" />
-			<arg value="Hello ANT Script" />
-		</java>
+		<echo>Deleting the .class files</echo>
+		<delete dir="build"/>
 
 	</target>
 
 	<target name="build">
 
 		<echo>Compiling the .java source files</echo>
-		<javac includeantruntime="false" srcdir="." destdir="." />
+		<mkdir dir="build/classes"/>
+		<javac includeantruntime="false" srcdir="." destdir="build/classes" />
 
 	</target>
 
