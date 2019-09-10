@@ -27,7 +27,11 @@
 
 	<target name="run">
 
-		<echo>Running the compied java files.</echo>
+		<echo>Running the compiled java files.</echo>
+		<java classname="Application" classpath="build/classes">
+			<arg value="auth.log" />
+			<arg value="0" />
+		</java>
 
 	</target>
 
