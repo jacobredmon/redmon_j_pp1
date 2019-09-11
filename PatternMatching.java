@@ -1,12 +1,33 @@
-/**
- * This class implements regex pattern matching and hashmap storage to read a .log file.
- * @author Jacob Redmon
- * @version 1.0
- * Programming Project One
- * CS322 - Compiler Construction
- * Spring 2019
- */
+import java.util.*; 
+import java.io.*;
 
-public class PatternMatching {
+public class PatternMatching 
+{
+	
+	public PatternMatching() 
+	{
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		
+	    String filePath = "C:/Users/Jrred/eclipse-workspace/auth.log";
+	    BufferedReader br;
+	    String line = "";
 
-}//end PatternMatching
+	    try {
+	        br = new BufferedReader(new FileReader(filePath));
+	        try {
+	            while((line = br.readLine()) != null)
+	            {
+	            	
+	            }
+	            br.close();
+	        } catch (IOException e) {
+	            //e.printStackTrace();
+	        }
+	    } catch (FileNotFoundException e) {
+	        //e.printStackTrace();
+	    }
+		
+	}
+	
+}// end PatternMatching
