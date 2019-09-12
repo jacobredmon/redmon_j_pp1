@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.*;
 import java.io.*;
 
 public class Application 
@@ -12,17 +13,20 @@ public class Application
 	    String filePath = "auth.log";
 	    BufferedReader br;
 	    String line = "";
-	    String p = ".*?([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]\\d).*\\w+"; //pattern for IP addresses
-	    int count = map.containsKey(line) ? map.get(line) : 0;
-	    
+	    String p = "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]\\d)"; //pattern for IP addresses
+
+            int count = map.containsKey(line) ? map.get(line) : 0;
+
 	    try {
 	        br = new BufferedReader(new FileReader(filePath));
 	        try {
 	            while((line = br.readLine()) != null)
 	            {
+			Matcher m = Pattern.compile(p).matcher(line);
 	            	//System.out.println(line);
-	            	if(line.matches(p) == true)
+	            	while(m.find())
 	            	{
+				String match = m.group();
 	            		//System.out.println(line);
 	            		map.put(line, count + 1);
 	            	}
@@ -34,9 +38,10 @@ public class Application
 	    } catch (FileNotFoundException e) {
 	        e.printStackTrace();
 	    }
-		
-		System.out.println(map.size());
-	    
+
+		System.out.println("The HashMap has " + map.size() + " entries");
+		map.forEach((k,v)->System.out.println(k + " " + v));
+
 	}// end main
 
 }// end Application
