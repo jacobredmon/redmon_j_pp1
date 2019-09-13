@@ -1,46 +1,43 @@
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 
 public class Application 
 {
 	
 	public static void main(String[] args) 
 	{
-
-		//PatternMatching patternMatch = new PatternMatching();
-		HashMap<String, Integer> map = new HashMap<>();
-	    String filePath = "auth.log";
-	    BufferedReader br;
-	    String line = "";
-	    String p = "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]\\d)"; //pattern for IP addresses
-
-            int count = map.containsKey(line) ? map.get(line) : 0;
-
-	    try {
-	        br = new BufferedReader(new FileReader(filePath));
-	        try {
-	            while((line = br.readLine()) != null)
-	            {
-			Matcher m = Pattern.compile(p).matcher(line);
-	            	//System.out.println(line);
-	            	while(m.find())
-	            	{
-				String match = m.group();
-	            		//System.out.println(line);
-	            		map.put(line, count + 1);
-	            	}
-	            }
-	            br.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    } catch (FileNotFoundException e) {
-	        e.printStackTrace();
-	    }
-
-		System.out.println("The HashMap has " + map.size() + " entries");
-		map.forEach((k,v)->System.out.println(k + " " + v));
+		long lines = 0;
+		
+		PatternMatching patternMatch = new PatternMatching();
+		
+		try
+		{
+			Scanner scanner = new Scanner(new File(args[0]));
+			while(scanner.hasNextLine())
+			{
+				patternMatch.PatternMatch(scanner.nextLine());
+				lines++;
+			}
+			scanner.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		if(args[1] == "1")
+		{
+			patternMatch.getIPAddressesMap().forEach((k,v)->System.out.println(k + " " + v));
+		}
+		if(args[1] == "2")
+		{
+			patternMatch.getUsernamesMap().forEach((k,v)->System.out.println(k + " " + v));
+		}
+		
+		System.out.println("The file " + args[0] + " contains " + lines + " lines.");
+		System.out.println("There are " + patternMatch.getIPAddressesMapSize() + "unique IP addresses.");
+		System.out.println("There are " + patternMatch.getUsernamesMapSize() + "unique usernames.");
 
 	}// end main
 
