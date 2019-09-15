@@ -11,7 +11,7 @@
 import java.util.regex.*;
 import java.util.HashMap;
 
-public class PatternMatching 
+public class PatternMatching
 {
 
 	private HashMap<String, Integer> IPAddressesMap = new HashMap<>();
@@ -20,7 +20,7 @@ public class PatternMatching
 	/*
 	 * Constructor to initialize hashmaps
 	 */
-	public PatternMatching() 
+	public PatternMatching()
 	{
 		IPAddressesMap = new HashMap<>();
 		UsernamesMap = new HashMap<>();
@@ -45,27 +45,11 @@ public class PatternMatching
 	}
 
 	/*
-	 * Returns the number of entries in IPAddressesMap
-	 */
-	public int getIPAddressesMapSize()
-	{
-		return IPAddressesMap.size();
-	}
-
-	/*
-	 * Returns the number of entries in UsernamesMap
-	 */
-	public int getUsernamesMapSize()
-	{
-		return UsernamesMap.size();
-	}
-
-	/*
 	 * Searches the string of the log file for any IP addresses and UsernamesMap
 	 * If any are found, adds to the relevant HashMap and increments the value as a frequency
 	 * @param input The String being processed
 	 */
-	public void PatternMatch(String input) 
+	public void PatternMatch(String input)
 	{
 	    //regex pattern to match only *valid* ip addresses
 	    Matcher ipPattern = Pattern.compile("([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]\\d)").matcher(input); //pattern for IP addresses

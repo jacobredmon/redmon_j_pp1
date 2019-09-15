@@ -13,9 +13,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
-public class Application 
+public class Application
 {
-	public static void main(String[] args) 
+	/*
+	 * This class reads through the file given to it from args[0] and prints out the data
+	 * in a hashmap depending on the print flag (args[1]).
+	 */
+	public static void main(String[] args)
 	{
 		int lines = 0;
 
@@ -48,8 +52,8 @@ public class Application
 		}// end if
 
 		System.out.println("The file " + args[0] + " contains " + lines + " lines.");
-		System.out.println("There are " + patternMatch.getIPAddressesMapSize() + " unique IP addresses.");
-		System.out.println("There are " + patternMatch.getUsernamesMapSize() + " unique usernames.");
+		System.out.println("There are " + patternMatch.getIPAddressesMap().size() + " unique IP addresses.");
+		System.out.println("There are " + patternMatch.getUsernamesMap().size() + " unique usernames.");
 
 	}// end main
 
